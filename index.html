@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Tools</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/normalize.css" />
+</head>
+<body>
+  <header>
+    <div class="logo"></div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#" class="active">Tienda</a>
+      <a href="#">Categorías</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div>
+      <input type="text" placeholder="Buscar" class="search-box" id="buscarInput" />
+    </div>
+  </header>
+
+  <div class="main-title">Music Tools</div>
+  
+  <!-- Contenedor dinámico para productos -->
+  <div id="productos-container" class="productos-grid"></div>
+
+  <div class="categories">
+    <div class="category selected" data-category="guitarras">
+      <div class="category-icon" style="background-image:url('https://cdn-icons-png.flaticon.com/512/1072/1072796.png');"></div>
+      Guitarras
+    </div>
+    <div class="category" data-category="teclados">
+      <div class="category-icon" style="background-image:url('https://cdn-icons-png.flaticon.com/512/3452/3452937.png');"></div>
+      Teclados
+    </div>
+    <div class="category" data-category="baterias">
+      <div class="category-icon" style="background-image:url('https://cdn-icons-png.flaticon.com/512/860/860798.png');"></div>
+      Baterías
+    </div>
+    <div class="category" data-category="microfonos">
+      <div class="category-icon" style="background-image:url('https://cdn-icons-png.flaticon.com/512/2721/2721075.png');"></div>
+      Micrófonos
+    </div>
+  </div>
+
+  <section class="blog-section">
+    <div class="blog-title">Blog</div>
+    <div class="blog-list">
+      <div class="blog-post">
+        <div class="blog-post-title">Post: Cómo elegir tu primera guitarra</div>
+        Soft tips y asesoramiento inicial para adquirir tu instrumento perfecto.
+      </div>
+      <div class="blog-post">
+        <div class="blog-post-title">Post: Diseño de teclados electrónicos</div>
+        Short análisis general del diseño, formato y funciones principales.
+      </div>
+      <div class="blog-post">
+        <div class="blog-post-title">Post: Golpeteo y técnicas en batería</div>
+        Soft tips y consejos básicos para ejecutar y mejorar tu ritmo.
+      </div>
+    </div>
+  </section>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
