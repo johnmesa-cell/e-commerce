@@ -1,1 +1,2 @@
-proyecto de  técnicas de modelado de software y e-commerce
+comercio electrónico
+proyecto de técnicas de modelado de software y comercio electrónico de instrumentos musicales
