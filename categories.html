@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Categorías | Music Tools</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="nav-bar">
+      <div class="logo"></div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <button class="menu-btn" onclick="window.location.href='tienda.html'">Tienda</button>
+        <a href="categories.html" class="active">Categorías</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div style="margin-left: auto;">
+        <input type="text" placeholder="Buscar producto, marca..." class="search-box" id="buscarInput" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="main-title">Explora por Categoría</h1>
+
+    <section class="categories-grid">
+      <a class="category-card" href="tienda.html?category=guitarras" aria-label="Guitarras">
+        <div class="category-card-img" style="background-image:url('assets/images/guitarras.jpg')"></div>
+        <h3>Guitarras</h3>
+        <p>Elige entre eléctricas y acústicas para todos los niveles.</p>
+      </a>
+
+      <a class="category-card" href="tienda.html?category=teclados" aria-label="Teclados">
+        <div class="category-card-img" style="background-image:url('assets/images/teclados.jpg')"></div>
+        <h3>Teclados</h3>
+        <p>Controladores y pianos para estudio y escenario.</p>
+      </a>
+
+      <a class="category-card" href="tienda.html?category=baterias" aria-label="Baterías">
+        <div class="category-card-img" style="background-image:url('assets/images/baterias.jpg')"></div>
+        <h3>Baterías</h3>
+        <p>Kits acústicos y electrónicos para todos los estilos.</p>
+      </a>
+
+      <a class="category-card" href="tienda.html?category=microfonos" aria-label="Micrófonos">
+        <div class="category-card-img" style="background-image:url('assets/images/microfonos.jpg')"></div>
+        <h3>Micrófonos</h3>
+        <p>Micrófonos para estudio, directo y producción.</p>
+      </a>
+
+      <a class="category-card" href="tienda.html?category=all" aria-label="Todas las categorías">
+        <div class="category-card-img" style="background-image:url('assets/images/all.jpg')"></div>
+        <h3>Todas</h3>
+        <p>Ver todos los productos disponibles en la tienda.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Music Tools. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

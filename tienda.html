@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda | Music Tools</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="nav-bar">
+      <div class="logo"></div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <button class="menu-btn" onclick="window.location.href='tienda.html'">Tienda</button>
+        <a href="categories.html">Categorías</a>
+        <a href="#">Blog</a>
+      </nav>
+      <div style="margin-left: auto;">
+        <input type="text" placeholder="Buscar productos, marca..." class="search-box" id="buscarInput" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="main-title">Tienda de instrumentos y equipos musicales</h1>
+
+    <section class="main-categories tienda-categories">
+      <a class="category" data-category="all" href="tienda.html?category=all" aria-pressed="false">Todas</a>
+      <a class="category" data-category="guitarras" href="tienda.html?category=guitarras" aria-pressed="false">Guitarras</a>
+      <a class="category" data-category="teclados" href="tienda.html?category=teclados" aria-pressed="false">Teclados</a>
+      <a class="category" data-category="baterias" href="tienda.html?category=baterias" aria-pressed="false">Baterías</a>
+      <a class="category" data-category="microfonos" href="tienda.html?category=microfonos" aria-pressed="false">Micrófonos</a>
+    </section>
+
+    <section id="productos-container" class="productos-grid">
+      <!-- Los productos se cargarán dinámicamente desde `assets/json/data.json` mediante `assets/js/app.js` -->
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Music Tools. Todos los derechos reservados.
+  </footer>
+  <!-- Modal para detalle de producto -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="close-btn" id="modal-close" aria-label="Cerrar">×</button>
+      <div class="modal-image">
+        <img id="modal-img" src="" alt="Imagen del producto">
+      </div>
+      <div class="modal-body">
+        <h2 id="modal-title">Título del producto</h2>
+        <p id="modal-desc">Descripción del producto</p>
+        <p class="price" id="modal-price">Precio</p>
+        <p id="modal-category">Categoría: <span></span></p>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
