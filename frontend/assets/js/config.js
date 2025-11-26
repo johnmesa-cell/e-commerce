@@ -1,5 +1,5 @@
-// Configuración de la API
-const API_CONFIG = {
+// Configuración de la API (lo colgamos de window para asegurar que sea global)
+window.API_CONFIG = {
     baseURL: '/api',  // Como servimos desde el mismo servidor, usamos ruta relativa
     endpoints: {
         // Auth
@@ -22,9 +22,9 @@ const API_CONFIG = {
     }
 };
 
-// Función helper para hacer peticiones a la API
-async function apiRequest(endpoint, options = {}) {
-    const url = `${API_CONFIG.baseURL}${endpoint}`;
+// Función helper para hacer peticiones a la API (también global)
+window.apiRequest = async function(endpoint, options = {}) {
+    const url = `${window.API_CONFIG.baseURL}${endpoint}`;
     
     const defaultOptions = {
         headers: {
@@ -43,7 +43,7 @@ async function apiRequest(endpoint, options = {}) {
         ...options,
         headers: {
             ...defaultOptions.headers,
-            ...options.headers,
+            ...(options.headers || {}),
         }
     };
     
@@ -60,4 +60,4 @@ async function apiRequest(endpoint, options = {}) {
         console.error('API Error:', error);
         throw error;
     }
-}
+};
