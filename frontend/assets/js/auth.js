@@ -4,16 +4,17 @@
 
 // Actualizar UI de autenticación en todas las páginas
 function updateAuthUI() {
+  const token = Storage.get('authToken');
   const currentUser = Storage.get('currentUser');
   const loginBtn = document.getElementById('login-btn');
   const userInfo = document.getElementById('user-info');
   const userName = document.getElementById('user-name');
 
-  if (currentUser) {
+  if (token && currentUser) {
     // Usuario logueado
     if (loginBtn) loginBtn.style.display = 'none';
     if (userInfo) userInfo.style.display = 'flex';
-    if (userName) userName.textContent = currentUser.name || currentUser.email;
+    if (userName) userName.textContent = currentUser.nombre || currentUser.email;
   } else {
     // Usuario NO logueado
     if (loginBtn) loginBtn.style.display = 'block';
@@ -26,6 +27,7 @@ const logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function() {
     if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+      Storage.remove('authToken');
       Storage.remove('currentUser');
       updateAuthUI();
       alert('Sesión cerrada exitosamente');
@@ -39,10 +41,10 @@ if (logoutBtn) {
 // ============================================
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
-  registerForm.addEventListener('submit', function(e) {
+  registerForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    const name = document.getElementById('name').value.trim();
+    const nombre = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
@@ -50,7 +52,7 @@ if (registerForm) {
     const messageDiv = document.getElementById('register-message');
     
     // Validaciones
-    if (!name || !email || !password || !confirmPassword) {
+    if (!nombre || !email || !password || !confirmPassword) {
       showMessage(messageDiv, 'Por favor completa todos los campos', 'error');
       return;
     }
@@ -70,36 +72,23 @@ if (registerForm) {
       return;
     }
     
-    // Obtener usuarios registrados
-    const users = Storage.get('users') || [];
-    
-    // Verificar si el email ya está registrado
-    if (users.find(user => user.email === email)) {
-      showMessage(messageDiv, 'Este correo ya está registrado', 'error');
-      return;
+    try {
+      // Llamar a la API de registro
+      const response = await apiRequest(API_CONFIG.endpoints.register, {
+        method: 'POST',
+        body: JSON.stringify({ nombre, email, password })
+      });
+      
+      if (response.success) {
+        showMessage(messageDiv, 'Cuenta creada exitosamente. Ahora puedes iniciar sesión.', 'success');
+        
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+      }
+    } catch (error) {
+      showMessage(messageDiv, error.message || 'Error al crear la cuenta', 'error');
     }
-    
-    // Crear nuevo usuario
-    const newUser = {
-      id: Date.now(),
-      name: name,
-      email: email,
-      password: password, // En producción, esto debería estar hasheado
-      createdAt: new Date().toISOString()
-    };
-    
-    // Guardar usuario
-    users.push(newUser);
-    Storage.set('users', users);
-    
-    showMessage(messageDiv, 'Cuenta creada exitosamente. Redirigiendo...', 'success');
-    
-    // Iniciar sesión automáticamente
-    Storage.set('currentUser', { id: newUser.id, name: newUser.name, email: newUser.email });
-    
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 1500);
   });
 }
 
@@ -108,12 +97,11 @@ if (registerForm) {
 // ============================================
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
-  loginForm.addEventListener('submit', function(e) {
+  loginForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-    const remember = document.getElementById('remember').checked;
     const messageDiv = document.getElementById('login-message');
     
     // Validaciones
@@ -122,29 +110,27 @@ if (loginForm) {
       return;
     }
     
-    // Obtener usuarios registrados
-    const users = Storage.get('users') || [];
-    
-    // Buscar usuario
-    const user = users.find(u => u.email === email && u.password === password);
-    
-    if (!user) {
-      showMessage(messageDiv, 'Correo o contraseña incorrectos', 'error');
-      return;
+    try {
+      // Llamar a la API de login
+      const response = await apiRequest(API_CONFIG.endpoints.login, {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      });
+      
+      if (response.success && response.data) {
+        // Guardar token y datos del usuario
+        Storage.set('authToken', response.data.token);
+        Storage.set('currentUser', response.data.user);
+        
+        showMessage(messageDiv, 'Inicio de sesión exitoso. Redirigiendo...', 'success');
+        
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1000);
+      }
+    } catch (error) {
+      showMessage(messageDiv, error.message || 'Credenciales incorrectas', 'error');
     }
-    
-    // Iniciar sesión
-    Storage.set('currentUser', { id: user.id, name: user.name, email: user.email });
-    
-    if (remember) {
-      Storage.set('rememberMe', true);
-    }
-    
-    showMessage(messageDiv, 'Inicio de sesión exitoso. Redirigiendo...', 'success');
-    
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 1000);
   });
 }
 
@@ -169,3 +155,4 @@ function showMessage(element, message, type) {
 document.addEventListener('DOMContentLoaded', function() {
   updateAuthUI();
 });
+
