@@ -15,7 +15,6 @@ const inputBuscar = document.querySelector("#buscarInput");
 let productos = [];
 let productosFiltrados = [];
 
-// Función para mostrar productos en el contenedor
 function mostrarProductos(lista) {
   productosContainer.innerHTML = "";
   if (lista.length === 0) {
@@ -24,13 +23,17 @@ function mostrarProductos(lista) {
   }
   lista.forEach((prod, idx) => {
     // incluimos data-index para poder identificar el producto al hacer clic
-    const imgSrc = encodeURI(prod.imagen || 'assets/images/placeholder.svg');
+    const imgSrc = encodeURI(prod.imagen || prod.imagen_url || 'assets/images/placeholder.svg');
+    
+    // CAMBIO: Convertir precio a número antes de usar toFixed
+    const precio = parseFloat(prod.precio) || 0;
+    
     const prodHTML = `
       <article class="producto-card" data-index="${idx}">
         <img src="${imgSrc}" alt="${prod.nombre}" />
         <h3>${prod.nombre}</h3>
         <p>${prod.descripcion}</p>
-        <p><b>Precio:</b> $${prod.precio.toFixed(2)}</p>
+        <p><b>Precio:</b> $${precio.toFixed(2)}</p>
       </article>`;
     productosContainer.insertAdjacentHTML("beforeend", prodHTML);
   });
@@ -39,42 +42,49 @@ function mostrarProductos(lista) {
   productosContainer.querySelectorAll('.producto-card').forEach(card => {
     card.addEventListener('click', () => {
       const index = parseInt(card.dataset.index, 10);
-      // index corresponde a la posición dentro de la lista pasada a la función
       showProductDetail(index, lista);
     });
   });
 }
 
-// Cargar datos desde JSON o sessionStorage
+// Cargar datos desde la API del backend
 function cargarDatos() {
   const dataEnStorage = sessionStorage.getItem("listado_productos");
   if (dataEnStorage) {
     const parsed = JSON.parse(dataEnStorage);
-    // Si los datos en sessionStorage contienen rutas remotas antiguas, preferimos volver a fetch
-    const tieneUrlsRemotas = parsed.some(p => typeof p.imagen === 'string' && p.imagen.startsWith('http'));
-    if (tieneUrlsRemotas) {
-      console.log('SessionStorage contiene rutas remotas; forzando recarga desde JSON');
-    } else {
-      productos = parsed;
-      productosFiltrados = productos;
-      mostrarProductos(productos);
-      console.log("Datos cargados desde sessionStorage");
-      return Promise.resolve();
-    }
+    productos = parsed;
+    productosFiltrados = productos;
+    mostrarProductos(productos);
+    console.log("Datos cargados desde sessionStorage");
+    return Promise.resolve();
   }
   
-  // Ajuste: ruta correcta al JSON dentro de la estructura del proyecto
-  return fetch("assets/json/data.json")
-    .then(res => res.json())
-    .then(data => {
+  // Consultar la API del backend para obtener productos desde la base de datos
+  return window.apiRequest('/products')
+    .then(response => {
+      // CAMBIO: Extraer el array de productos del objeto de respuesta
+      const data = response.data || response; // response.data contiene el array de productos
+      
       productos = data;
       productosFiltrados = data;
       mostrarProductos(data);
       sessionStorage.setItem("listado_productos", JSON.stringify(data));
-      console.log("Datos cargados desde archivo JSON");
+      console.log("Datos cargados desde la base de datos (API)");
     })
-    .catch(err => console.error("Error al cargar datos:", err));
+    .catch(err => {
+      console.error("Error al cargar productos desde la API:", err);
+      // Fallback opcional: si falla la API, cargar desde JSON local
+      return fetch("assets/json/data.json")
+        .then(res => res.json())
+        .then(data => {
+          productos = data;
+          productosFiltrados = data;
+          mostrarProductos(data);
+          console.log("Datos cargados desde archivo JSON (fallback)");
+        });
+    });
 }
+
 
 // Filtrar productos por búsqueda y categoría
 function filtrarProductos() {
@@ -209,14 +219,19 @@ function showProductDetail(index, lista) {
   const prod = lista[index];
   if (!prod) return;
   
-  document.getElementById('modal-img').src = encodeURI(prod.imagen || 'assets/images/placeholder.svg');
+  const imgSrc = encodeURI(prod.imagen || prod.imagen_url || 'assets/images/placeholder.svg');
+  
+  // CAMBIO: Convertir precio a número
+  const precio = parseFloat(prod.precio) || 0;
+  
+  document.getElementById('modal-img').src = imgSrc;
   document.getElementById('modal-img').alt = prod.nombre;
   document.getElementById('modal-title').textContent = prod.nombre;
   document.getElementById('modal-desc').textContent = prod.descripcion;
-  document.getElementById('modal-price').textContent = `$ ${prod.precio.toFixed(2)}`;
+  document.getElementById('modal-price').textContent = `$ ${precio.toFixed(2)}`;
   
   const catEl = document.getElementById('modal-category');
-  if (catEl) catEl.querySelector('span').textContent = prod.categoria;
+  if (catEl) catEl.querySelector('span').textContent = prod.categoria || prod.categoria_nombre || 'Sin categoría';
   
   modalOverlay.classList.add('open');
   modalOverlay.setAttribute('aria-hidden', 'false');

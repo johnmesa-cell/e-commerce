@@ -14,16 +14,20 @@ class Product {
     }
 
     static async findAll(limit = 50, offset = 0) {
-        const [rows] = await db.slave.execute(
-            `SELECT p.*, c.nombre as categoria_nombre 
-             FROM productos p 
-             LEFT JOIN categorias c ON p.categoria_id = c.id 
-             WHERE p.activo = 1
-             LIMIT ? OFFSET ?`,
-            [limit, offset]
-        );
-        return rows;
+    // Asegurarnos de que limit y offset sean números enteros
+    const limitInt = parseInt(limit) || 50;
+    const offsetInt = parseInt(offset) || 0;
+    
+    const [rows] = await db.slave.execute(
+        `SELECT p.*, c.nombre as categoria_nombre 
+         FROM productos p 
+         LEFT JOIN categorias c ON p.categoria_id = c.id 
+         WHERE p.activo = 1
+         LIMIT ${limitInt} OFFSET ${offsetInt}`
+    );
+    return rows;
     }
+
 
     static async findById(id) {
         const [rows] = await db.slave.execute(
