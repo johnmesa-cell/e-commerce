@@ -19,7 +19,7 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 -- Insertar productos de instrumentos musicales
 INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, imagen_url) VALUES
 -- Guitarras
-('Guitarra Acústica Yamaha F310', 'Guitarra acústica para principiantes, tapa de abeto', 450000, 25, 1, 'assets/images/Guitarra acustica yamaha 3'),
+('Guitarra Acústica Yamaha F310', 'Guitarra acústica para principiantes, tapa de abeto', 450000, 25, 1, 'assets/images/Guitarra acustica yamaha 3.png'),
 ('Guitarra Eléctrica Fender Stratocaster', 'Guitarra eléctrica clásica con 3 pastillas single coil', 3200000, 10, 1, 'https://ejemplo.com/fender-strat.jpg'),
 ('Bajo Eléctrico Ibanez SR300E', 'Bajo de 4 cuerdas con electrónica activa', 1850000, 15, 1, 'https://ejemplo.com/ibanez-bass.jpg'),
 ('Guitarra Electroacústica Taylor 214ce', 'Guitarra electroacústica con cutaway y previo ES2', 4500000, 8, 1, 'https://ejemplo.com/taylor-214.jpg'),
