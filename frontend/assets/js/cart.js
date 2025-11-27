@@ -1,15 +1,15 @@
 // ============================================
-// GESTIÓN DEL CARRITO DE COMPRAS
+// GESTIÓN DEL CARRITO DE COMPRAS POR USUARIO
 // ============================================
 
-// Obtener carrito del localStorage
+// Obtener carrito del usuario actual desde localStorage
 function getCart() {
-  return Storage.get('cart') || [];
+  return Storage.getUserCart();
 }
 
-// Guardar carrito en localStorage
+// Guardar carrito del usuario actual en localStorage
 function saveCart(cart) {
-  Storage.set('cart', cart);
+  Storage.setUserCart(cart);
   updateCartCount();
 }
 
@@ -25,6 +25,15 @@ function updateCartCount() {
 
 // Agregar producto al carrito
 function addToCart(productId, productData = null) {
+  // Verificar si el usuario está autenticado
+  const currentUser = Storage.get('currentUser');
+  if (!currentUser) {
+    if (confirm('Debes iniciar sesión para agregar productos al carrito. ¿Deseas ir a la página de inicio de sesión?')) {
+      window.location.href = 'login.html';
+    }
+    return;
+  }
+
   const cart = getCart();
   
   // Buscar si el producto ya existe en el carrito
@@ -33,6 +42,7 @@ function addToCart(productId, productData = null) {
   if (existingItem) {
     // Incrementar cantidad
     existingItem.quantity = (existingItem.quantity || 1) + 1;
+    alert('Cantidad actualizada en el carrito');
   } else {
     // Agregar nuevo producto
     const newItem = productData || {
@@ -40,10 +50,10 @@ function addToCart(productId, productData = null) {
       quantity: 1
     };
     cart.push(newItem);
+    alert('Producto agregado al carrito');
   }
   
   saveCart(cart);
-  alert('Producto agregado al carrito');
 }
 
 // Eliminar producto del carrito
@@ -78,10 +88,10 @@ function updateQuantity(productId, newQuantity) {
   }
 }
 
-// Vaciar carrito completo
+// Vaciar carrito completo del usuario actual
 function clearCart() {
   if (confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
-    Storage.remove('cart');
+    Storage.removeUserCart();
     updateCartCount();
     
     // Si estamos en la página del carrito, renderizar de nuevo
@@ -93,6 +103,29 @@ function clearCart() {
 
 // Renderizar carrito en cart.html
 function renderCart() {
+  // Verificar si el usuario está autenticado
+  const currentUser = Storage.get('currentUser');
+  if (!currentUser) {
+    const cartContent = document.getElementById('cart-content');
+    const emptyCart = document.getElementById('empty-cart');
+    const cartSummary = document.getElementById('cart-summary');
+    
+    if (cartContent) {
+      cartContent.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+          <h2>⚠️ Sesión requerida</h2>
+          <p>Debes iniciar sesión para ver tu carrito de compras</p>
+          <button class="cta-btn" onclick="window.location.href='login.html'" style="margin-top: 20px;">
+            Iniciar Sesión
+          </button>
+        </div>
+      `;
+    }
+    if (emptyCart) emptyCart.style.display = 'none';
+    if (cartSummary) cartSummary.style.display = 'none';
+    return;
+  }
+
   const cart = getCart();
   const cartContent = document.getElementById('cart-content');
   const emptyCart = document.getElementById('empty-cart');
@@ -112,8 +145,13 @@ function renderCart() {
   if (emptyCart) emptyCart.style.display = 'none';
   if (cartSummary) cartSummary.style.display = 'block';
   
-  // Renderizar items del carrito
-  cartContent.innerHTML = cart.map(item => `
+  // Renderizar items del carrito con información del usuario
+  const userInfo = `<div class="cart-user-info">
+    <p><strong>🛒 Carrito de:</strong> ${currentUser.name || currentUser.email}</p>
+  </div>`;
+
+  
+  cartContent.innerHTML = userInfo + cart.map(item => `
     <div class="cart-item" data-id="${item.id}">
       <img src="${item.imagen || 'assets/images/placeholder.jpg'}" alt="${item.nombre || 'Producto'}">
       <div class="item-details">
@@ -176,7 +214,13 @@ if (checkoutBtn) {
       return;
     }
     
-    alert('Funcionalidad de pago en desarrollo. Tu pedido está listo para ser procesado.');
+    const cart = getCart();
+    if (cart.length === 0) {
+      alert('Tu carrito está vacío');
+      return;
+    }
+    
+    alert(`Procesando pedido para ${currentUser.name || currentUser.email}...\n\nFuncionalidad de pago en desarrollo.`);
   });
 }
 
@@ -190,3 +234,4 @@ if (clearCartBtn) {
 document.addEventListener('DOMContentLoaded', function() {
   updateCartCount();
 });
+

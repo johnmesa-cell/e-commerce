@@ -28,19 +28,42 @@ function mostrarProductos(lista) {
     // CAMBIO: Convertir precio a número antes de usar toFixed
     const precio = parseFloat(prod.precio) || 0;
     
+    // NUEVO: Formato de precio consistente para el carrito
+    const precioFormateado = `$${precio.toLocaleString('es-CO', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    
+    // NUEVO: Preparar objeto de producto para el carrito
+    const productData = {
+      id: prod.id || prod.producto_id || idx, // Usar ID del producto o índice como fallback
+      nombre: prod.nombre,
+      precio: precioFormateado,
+      imagen: imgSrc,
+      descripcion: prod.descripcion,
+      quantity: 1
+    };
+    
+    // NUEVO: Escapar comillas en el JSON para evitar errores
+    const productDataJSON = JSON.stringify(productData).replace(/"/g, '&quot;').replace(/'/g, "\\'");
+    
     const prodHTML = `
-      <article class="producto-card" data-index="${idx}">
+      <article class="producto-card" data-index="${idx}" data-product-id="${productData.id}">
         <img src="${imgSrc}" alt="${prod.nombre}" />
         <h3>${prod.nombre}</h3>
         <p>${prod.descripcion}</p>
-        <p><b>Precio:</b> $${precio.toFixed(2)}</p>
+        <p class="precio"><b>Precio:</b> ${precioFormateado}</p>
+        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${productData.id}, ${productDataJSON}); return false;" title="Agregar al carrito">
+          🛒 Agregar al Carrito
+        </button>
       </article>`;
     productosContainer.insertAdjacentHTML("beforeend", prodHTML);
   });
 
   // Añadir listeners para abrir modal con información relevante del producto
   productosContainer.querySelectorAll('.producto-card').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      // No abrir modal si se hizo clic en el botón de agregar al carrito
+      if (e.target.classList.contains('add-to-cart-btn')) {
+        return;
+      }
       const index = parseInt(card.dataset.index, 10);
       showProductDetail(index, lista);
     });

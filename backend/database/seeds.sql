@@ -44,7 +44,7 @@ INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, imagen_
 ('Clarinete Buffet E11', 'Clarinete profesional en Bb con sistema Boehm', 3900000, 6, 4, 'assets/images/Clarinete Buffet E11.png'),
 
 -- Cuerdas
-('Violín Stentor Student I 4/4', 'Violín completo para estudiantes con arco y estuche', 850000, 18, 5, 'assets/images/Violin.webp'),
+('Violín Stentor Student I 4/4', 'Violín completo para estudiantes con arco y estuche', 850000, 18, 5, 'assets/images/Violin.png'),
 ('Violonchelo Cremona SC-175 4/4', 'Violonchelo de estudio con tapa de abeto', 2800000, 5, 5, 'assets/images/Violonchelo.webp'),
 ('Ukelele Kala KA-15S Soprano', 'Ukelele soprano de caoba con funda', 280000, 40, 5, 'assets/images/ukulele.webp'),
 

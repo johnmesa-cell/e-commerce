@@ -134,6 +134,38 @@ if (loginForm) {
   });
 }
 
+// NUEVO: Función mejorada para cerrar sesión y limpiar carrito
+function logout() {
+  const currentUser = Storage.get('currentUser');
+  
+  if (currentUser) {
+    // Preguntar si desea conservar el carrito
+    const keepCart = confirm(
+      `${currentUser.name || 'Usuario'}, ¿deseas conservar tu carrito de compras para la próxima vez que inicies sesión?\n\n` +
+      'Si seleccionas "Cancelar", tu carrito se vaciará.'
+    );
+    
+    if (!keepCart) {
+      // Eliminar carrito del usuario actual
+      Storage.removeUserCart();
+    }
+    
+    // Eliminar sesión del usuario
+    Storage.remove('currentUser');
+    
+    alert('Sesión cerrada exitosamente');
+    window.location.href = 'index.html';
+  }
+}
+
+// Actualizar el event listener del botón de logout
+document.addEventListener('DOMContentLoaded', function() {
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout);
+  }
+});
+
 // ============================================
 // FUNCIONES AUXILIARES
 // ============================================
