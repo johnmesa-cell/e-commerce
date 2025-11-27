@@ -92,15 +92,21 @@ function filtrarProductos() {
   const catSeleccionada = document.querySelector(".category.selected")?.dataset.category || "all";
   
   productosFiltrados = productos.filter(prod => {
-    const coincideCategoria = catSeleccionada === "all" || prod.categoria === catSeleccionada;
+    const categoriaProd = prod.categoria_nombre || prod.categoria || '';
+    
+    // Comparación exacta con la categoría de la base de datos
+    const coincideCategoria = catSeleccionada === "all" || categoriaProd === catSeleccionada;
+    
     const coincideTexto = texto === "" || 
                           prod.nombre.toLowerCase().includes(texto) || 
-                          prod.descripcion.toLowerCase().includes(texto);
+                          (prod.descripcion || '').toLowerCase().includes(texto);
+    
     return coincideCategoria && coincideTexto;
   });
   
   mostrarProductos(productosFiltrados);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // Aseguramos que cargarDatos devuelva una promesa para realizar acciones una vez cargados los productos
