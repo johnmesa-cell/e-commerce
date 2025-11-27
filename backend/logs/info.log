@@ -26,3 +26,5 @@
 {"timestamp":"2025-11-27T18:52:25.728Z","level":"info","message":"Entorno: development"}
 {"timestamp":"2025-11-27T18:56:55.748Z","level":"info","message":"Servidor corriendo en puerto 3000"}
 {"timestamp":"2025-11-27T18:56:55.755Z","level":"info","message":"Entorno: development"}
+{"timestamp":"2025-11-27T20:04:12.225Z","level":"info","message":"Servidor corriendo en puerto 3000"}
+{"timestamp":"2025-11-27T20:04:12.231Z","level":"info","message":"Entorno: development"}

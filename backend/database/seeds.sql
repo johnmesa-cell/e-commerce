@@ -20,28 +20,28 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, imagen_url) VALUES
 -- Guitarras
 ('Guitarra Acústica Yamaha F310', 'Guitarra acústica para principiantes, tapa de abeto', 450000, 25, 1, 'assets/images/Guitarra acustica yamaha 3.png'),
-('Guitarra Eléctrica Fender Stratocaster', 'Guitarra eléctrica clásica con 3 pastillas single coil', 3200000, 10, 1, 'https://ejemplo.com/fender-strat.jpg'),
-('Bajo Eléctrico Ibanez SR300E', 'Bajo de 4 cuerdas con electrónica activa', 1850000, 15, 1, 'https://ejemplo.com/ibanez-bass.jpg'),
-('Guitarra Electroacústica Taylor 214ce', 'Guitarra electroacústica con cutaway y previo ES2', 4500000, 8, 1, 'https://ejemplo.com/taylor-214.jpg'),
-('Guitarra Clásica Alhambra 1C', 'Guitarra española con tapa de cedro macizo', 980000, 20, 1, 'https://ejemplo.com/alhambra-1c.jpg'),
+('Guitarra Eléctrica Fender Stratocaster', 'Guitarra eléctrica clásica con 3 pastillas single coil', 3200000, 10, 1, 'assets/images/Guitarra Eléctrica Fender Stratocaster.png'),
+('Bajo Eléctrico Ibanez SR300E', 'Bajo de 4 cuerdas con electrónica activa', 1850000, 15, 1, 'assets/images/Bajo Eléctrico Ibanez SR300E.png'),
+('Guitarra Electroacústica Taylor 214ce', 'Guitarra electroacústica con cutaway y previo ES2', 4500000, 8, 1, 'assets/images/Guitarra Electroacústica Taylor 214ce.png'),
+('Guitarra Clásica Alhambra 1C', 'Guitarra española con tapa de cedro macizo', 980000, 20, 1, 'assets/images/Guitarra Clásica Alhambra 1C.png'),
 
 -- Teclados y Pianos
-('Piano Digital Yamaha P-45', 'Piano digital de 88 teclas con acción de martillo', 1950000, 12, 2, 'https://ejemplo.com/yamaha-p45.jpg'),
-('Teclado Casio CT-S300', 'Teclado portátil de 61 teclas con 400 tonos', 520000, 30, 2, 'https://ejemplo.com/casio-cts300.jpg'),
-('Sintetizador Korg Minilogue XD', 'Sintetizador analógico polifónico de 4 voces', 3800000, 6, 2, 'https://ejemplo.com/korg-minilogue.jpg'),
-('Piano Digital Roland FP-30X', 'Piano portátil con altavoces integrados y Bluetooth', 2650000, 10, 2, 'https://ejemplo.com/roland-fp30x.jpg'),
+('Piano Digital Yamaha P-45', 'Piano digital de 88 teclas con acción de martillo', 1950000, 12, 2, 'assets/images/Piano Digital Yamaha P-45.png'),
+('Teclado Casio CT-S300', 'Teclado portátil de 61 teclas con 400 tonos', 520000, 30, 2, 'assets/images/Teclado Casio CT-S300.png'),
+('Sintetizador Korg Minilogue XD', 'Sintetizador analógico polifónico de 4 voces', 3800000, 6, 2, 'assets/images/Sintetizador Korg Minilogue XD.png'),
+('Piano Digital Roland FP-30X', 'Piano portátil con altavoces integrados y Bluetooth', 2650000, 10, 2, 'assets/images/Piano Digital Roland FP-30X.png'),
 
 -- Batería y Percusión
-('Batería Acústica Pearl Export', 'Kit completo de 5 piezas con herrajes', 3500000, 5, 3, 'https://ejemplo.com/pearl-export.jpg'),
-('Batería Electrónica Alesis Nitro Mesh', 'Batería digital con pads de malla y módulo de sonido', 2100000, 8, 3, 'https://ejemplo.com/alesis-nitro.jpg'),
-('Cajón Peruano LP Aspire', 'Cajón flamenco con cuerdas ajustables', 380000, 35, 3, 'https://ejemplo.com/lp-cajon.jpg'),
-('Congas LP Matador', 'Par de congas de fibra de vidrio 10" y 11"', 1650000, 12, 3, 'https://ejemplo.com/lp-congas.jpg'),
+('Batería Acústica Pearl Export', 'Kit completo de 5 piezas con herrajes', 3500000, 5, 3, 'assets/images/Batería Acústica Pearl Export.png'),
+('Batería Electrónica Alesis Nitro Mesh', 'Batería digital con pads de malla y módulo de sonido', 2100000, 8, 3, 'assets/images/Batería Electrónica Alesis Nitro Mesh.png'),
+('Cajón Peruano LP Aspire', 'Cajón flamenco con cuerdas ajustables', 380000, 35, 3, 'assets/images/Cajón Peruano LP Aspire.png'),
+('Congas LP Matador', 'Par de congas de fibra de vidrio 10" y 11"', 1650000, 12, 3, 'assets/images/Congas LP Matador.png'),
 
 -- Vientos
-('Saxofón Alto Yamaha YAS-280', 'Saxofón alto para estudiantes con estuche', 4200000, 7, 4, 'https://ejemplo.com/yamaha-sax.jpg'),
-('Flauta Traversa Yamaha YFL-222', 'Flauta de plata alemana para principiantes', 1450000, 15, 4, 'https://ejemplo.com/yamaha-flauta.jpg'),
-('Trompeta Bach TR300H2', 'Trompeta Bb con campana de latón lacado', 2300000, 10, 4, 'https://ejemplo.com/bach-trompeta.jpg'),
-('Clarinete Buffet E11', 'Clarinete profesional en Bb con sistema Boehm', 3900000, 6, 4, 'https://ejemplo.com/buffet-clarinete.jpg'),
+('Saxofón Alto Yamaha YAS-280', 'Saxofón alto para estudiantes con estuche', 4200000, 7, 4, 'assets/images/Saxofón Alto Yamaha YAS-280.png'),
+('Flauta Traversa Yamaha YFL-222', 'Flauta de plata alemana para principiantes', 1450000, 15, 4, 'assets/images/Flauta Traversa Yamaha YFL-222.png'),
+('Trompeta Bach TR300H2', 'Trompeta Bb con campana de latón lacado', 2300000, 10, 4, 'assets/images/Trompeta Bach TR300H2.png'),
+('Clarinete Buffet E11', 'Clarinete profesional en Bb con sistema Boehm', 3900000, 6, 4, 'assets/images/Clarinete Buffet E11.png'),
 
 -- Cuerdas
 ('Violín Stentor Student I 4/4', 'Violín completo para estudiantes con arco y estuche', 850000, 18, 5, 'https://ejemplo.com/stentor-violin.jpg'),
