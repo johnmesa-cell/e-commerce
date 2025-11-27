@@ -80,9 +80,9 @@ nav a:hover {
 
 .cart-btn {
   position: relative;
-  background: #FFD700;
-  color: #0F2A60;
-  border: none;
+  background: #0F2A60;
+  color: #FFD700;
+  border: 2px solid #FFD700;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -101,8 +101,8 @@ nav a:hover {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: #0F2A60;
-  color: #FFD700;
+  background: #FFD700;
+  color: #0F2A60;
   border-radius: 50%;
   padding: 2px 8px;
   font-size: 12px;
