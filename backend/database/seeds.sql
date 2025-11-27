@@ -44,27 +44,27 @@ INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, imagen_
 ('Clarinete Buffet E11', 'Clarinete profesional en Bb con sistema Boehm', 3900000, 6, 4, 'assets/images/Clarinete Buffet E11.png'),
 
 -- Cuerdas
-('Violín Stentor Student I 4/4', 'Violín completo para estudiantes con arco y estuche', 850000, 18, 5, 'https://ejemplo.com/stentor-violin.jpg'),
-('Violonchelo Cremona SC-175 4/4', 'Violonchelo de estudio con tapa de abeto', 2800000, 5, 5, 'https://ejemplo.com/cremona-cello.jpg'),
-('Ukelele Kala KA-15S Soprano', 'Ukelele soprano de caoba con funda', 280000, 40, 5, 'https://ejemplo.com/kala-ukulele.jpg'),
+('Violín Stentor Student I 4/4', 'Violín completo para estudiantes con arco y estuche', 850000, 18, 5, 'assets/images/Violin.webp'),
+('Violonchelo Cremona SC-175 4/4', 'Violonchelo de estudio con tapa de abeto', 2800000, 5, 5, 'assets/images/Violonchelo.webp'),
+('Ukelele Kala KA-15S Soprano', 'Ukelele soprano de caoba con funda', 280000, 40, 5, 'assets/images/ukulele.webp'),
 
 -- Accesorios
-('Cable Instrumento Monster Cable 6m', 'Cable profesional para guitarra y bajo', 85000, 60, 6, 'https://ejemplo.com/monster-cable.jpg'),
-('Pedal Overdrive Boss OD-3', 'Pedal de overdrive para guitarra', 420000, 25, 6, 'https://ejemplo.com/boss-od3.jpg'),
-('Soporte para Guitarra Hercules GS414B', 'Soporte universal con bloqueo automático', 95000, 45, 6, 'https://ejemplo.com/hercules-stand.jpg'),
-('Afinador Cromático Boss TU-3', 'Afinador de pedal con display LED', 380000, 30, 6, 'https://ejemplo.com/boss-tu3.jpg'),
-('Cuerdas Guitarra Eléctrica Ernie Ball 10-46', 'Set de cuerdas calibre regular', 35000, 120, 6, 'https://ejemplo.com/ernie-ball.jpg'),
+('Cable Instrumento Monster Cable 6m', 'Cable profesional para guitarra y bajo', 85000, 60, 6, 'assets/images/Cable profesional.webp'),
+('Pedal Overdrive Boss OD-3', 'Pedal de overdrive para guitarra', 420000, 25, 6, 'assets/images/Pedal de overdrive para guitarra.webp'),
+('Soporte para Guitarra Hercules GS414B', 'Soporte universal con bloqueo automático', 95000, 45, 6, 'assets/images/Soporte universal.jpg'),
+('Afinador Cromático Boss TU-3', 'Afinador de pedal con display LED', 380000, 30, 6, 'assets/images/Afinador de pedal con display LED.webp'),
+('Cuerdas Guitarra Eléctrica Ernie Ball 10-46', 'Set de cuerdas calibre regular', 35000, 120, 6, 'assets/images/Set de cuerdas calibre regular.jpg'),
 
 -- Audio Profesional
-('Interfaz de Audio Focusrite Scarlett 2i2', 'Interfaz USB de 2 entradas con previos de calidad', 650000, 22, 7, 'https://ejemplo.com/scarlett-2i2.jpg'),
-('Micrófono Shure SM57', 'Micrófono dinámico para instrumentos y voces', 480000, 35, 7, 'https://ejemplo.com/shure-sm57.jpg'),
-('Monitores de Estudio KRK Rokit 5 G4 (Par)', 'Monitores activos de 5 pulgadas', 1850000, 15, 7, 'https://ejemplo.com/krk-rokit5.jpg'),
-('Micrófono Condensador Audio-Technica AT2020', 'Micrófono de condensador cardioide XLR', 520000, 28, 7, 'https://ejemplo.com/at2020.jpg'),
+('Interfaz de Audio Focusrite Scarlett 2i2', 'Interfaz USB de 2 entradas con previos de calidad', 650000, 22, 7, 'assets/images/Interfaz USB de 2 entradas con previos de calidad.webp'),
+('Micrófono Shure SM57', 'Micrófono dinámico para instrumentos y voces', 480000, 35, 7, 'assets/images/Micrófono dinámico para instrumentos y voces.jpg'),
+('Monitores de Estudio KRK Rokit 5 G4 (Par)', 'Monitores activos de 5 pulgadas', 1850000, 15, 7, 'assets/images/Monitores activos de 5 pulgadas.jpg'),
+('Micrófono Condensador Audio-Technica AT2020', 'Micrófono de condensador cardioide XLR', 520000, 28, 7, 'assets/images/Hipercentro-Electronico-micrófono-profesional-para-instrumentos-de-alta-fidelidad-de-sonido-y-calidad-SHURE-PGA81XLR-1.webp'),
 
 -- DJ y Producción
-('Controladora DJ Pioneer DDJ-400', 'Controladora de 2 canales para rekordbox', 1450000, 12, 8, 'https://ejemplo.com/pioneer-ddj400.jpg'),
-('Mezclador DJ Behringer DJX750', 'Mezclador profesional de 5 canales', 980000, 10, 8, 'https://ejemplo.com/behringer-djx750.jpg'),
-('Controlador MIDI Akai MPK Mini', 'Teclado controlador MIDI compacto de 25 teclas', 380000, 25, 8, 'https://ejemplo.com/akai-mpk.jpg');
+('Controladora DJ Pioneer DDJ-400', 'Controladora de 2 canales para rekordbox', 1450000, 12, 8, 'assets/images/Controladora de 2 canales.jpg'),
+('Mezclador DJ Behringer DJX750', 'Mezclador profesional de 5 canales', 980000, 10, 8, 'assets/images/Mezclador profesional de 5 canales.webp'),
+('Controlador MIDI Akai MPK Mini', 'Teclado controlador MIDI compacto de 25 teclas', 380000, 25, 8, 'assets/images/Pioneer-DJ-DDJ-800-2-Channel-Controller-for-rekordbox-dj-3.webp');
 
 -- Insertar un pedido de ejemplo
 INSERT INTO pedidos (usuario_id, total, estado) VALUES
