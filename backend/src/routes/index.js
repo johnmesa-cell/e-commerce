@@ -5,12 +5,14 @@ const authRoutes = require('./auth.routes');
 const productRoutes = require('./product.routes');
 const categoryRoutes = require('./category.routes');
 const orderRoutes = require('./order.routes');
+const cartRoutes = require('./cart.routes');  // ← AGREGAR
 
 // Montar rutas
 router.use('/auth', authRoutes);
 router.use('/products', productRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/orders', orderRoutes);
+router.use('/cart', cartRoutes);  // ← AGREGAR
 
 // Ruta de prueba
 router.get('/health', (req, res) => {
