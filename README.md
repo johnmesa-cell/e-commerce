@@ -51,43 +51,7 @@ Music Tools es una plataforma de comercio electrónico especializada en la venta
 
 ## 📁 Estructura del Proyecto
 
-e-commerce/
-├── backend/
-│ ├── config/
-│ ├── controllers/
-│ ├── models/
-│ ├── routes/
-│ └── server.js
-│
-├── frontend/
-│ ├── assets/
-│ │ ├── css/
-│ │ │ ├── style.css # Estilos principales
-│ │ │ ├── cart.css # Estilos del carrito
-│ │ │ ├── auth.css # Estilos de autenticación
-│ │ │ └── normalize.css # Reset CSS
-│ │ ├── js/
-│ │ │ ├── app.js # Lógica de productos
-│ │ │ ├── cart.js # Gestión del carrito
-│ │ │ ├── auth.js # Autenticación
-│ │ │ ├── storage.js # Utilidades de localStorage
-│ │ │ ├── config.js # Configuración
-│ │ │ ├── search.js # Búsqueda
-│ │ │ └── main.js # Inicialización
-│ │ ├── images/
-│ │ └── json/
-│ │ └── data.json # Datos de productos (fallback)
-│ │
-│ ├── index.html # Página principal
-│ ├── tienda.html # Catálogo de productos
-│ ├── cart.html # Carrito de compras
-│ ├── login.html # Inicio de sesión
-│ ├── register.html # Registro de usuarios
-│ ├── categories.html # Vista de categorías
-│ ├── blog.html # Blog principal
-│ └── blog-post-*.html # Artículos del blog
-│
-└── README.md
+frontend/assets/images/image.png
 
 
 ## 🚀 Instalación y Configuración
