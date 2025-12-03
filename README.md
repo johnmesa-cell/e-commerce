@@ -52,7 +52,7 @@ Music Tools es una plataforma de comercio electrónico especializada en la venta
 ## 📁 Estructura del Proyecto
 
 [frontend/assets/images/image.png](https://github.com/johnmesa-cell/e-commerce/blob/main/frontend/assets/images/image.png)
-
+![imagen](frontend/assets/images/image.png)
 
 ## 🚀 Instalación y Configuración
 
