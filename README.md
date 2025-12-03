@@ -208,6 +208,8 @@ Las contribuciones son bienvenidas. Para contribuir:
 ## 👥 Autores
 
 - **John Mesa** - [@johnmesa-cell](https://github.com/johnmesa-cell)
+- **JJuan Jose Restrepo Londoño** - [@joserestrepo1-ctrl](https://github.com/joserestrepo1-ctrl)
+- **Diego Andrés Betancur Fernández** - [@KatorSarah](https://github.com/KatorSarah)
 
 ## 📄 Licencia
 
